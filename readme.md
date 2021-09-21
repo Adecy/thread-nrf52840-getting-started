@@ -43,6 +43,7 @@
 - Guides : https://openthread.io/guides
     - [**DONE**] [Simulating a Thread network using OpenThread in Docker](https://openthread.io/codelabs/openthread-simulation)
     - [**DONE**] [Build a Thread network with nRF52840 boards and OpenThread](https://openthread.io/codelabs/openthread-hardware)
+    - [**DONE**] [Thread Border Router - Bidirectional IPv6 Connectivity and DNS-Based Service Discovery](https://openthread.io/codelabs/openthread-border-router)
     - [Testing a Thread Network with Visualization](https://openthread.io/codelabs/openthread-testing-visualization)
     - [**TODO**] [Pre-Built NCP Firmware](https://openthread.io/platforms/co-processor/firmware)
     - [**TODO**] [Packet Sniffing with Pyspinel](https://openthread.io/guides/pyspinel/sniffer)
@@ -143,6 +144,60 @@ Ping between two devices :
 UDP packets between two devices :
 ![env7.png](./pics/env7.png)
 
+
+---
+
+# OpenThread Border Router
+
+Guide : [Thread Border Router - Bidirectional IPv6 Connectivity and DNS-Based Service Discovery](https://openthread.io/codelabs/openthread-border-router)
+
+![network.png](./pics/network.png)
+![ping.png](./pics/ping.png)
+
+
+## Commands
+
+### Init
+
+`cd ~/OpenThreadGuide1`
+
+### OT CTL
+
+`sudo openthread/build/posix/src/posix/ot-ctl`
+
+### OT BR agent
+
+`cd ot-br-posix`
+
+`./script/bootstrap`
+
+`INFRA_IF_NAME=ens33 ./script/setup`
+
+`sudo service otbr-agent status`
+
+### OTBR ACM0 : 683624946
+
+`cd src/ot-nrf528xx/`
+
+`script/build nrf52840 USB_trans -DOT_THREAD_VERSION=1.2`
+
+`arm-none-eabi-objcopy -O ihex build/bin/ot-rcp build/bin/ot-rcp.hex`
+
+`nrfjprog -f nrf52 -s 683624946 --chiperase --program  build/bin/ot-rcp.hex --reset`
+
+## OT FTD ACM0 : 683624946
+
+`cd src/ot-nrf528xx/`
+`script/build nrf52840 USB_trans -DOT_SRP_CLIENT=ON -DOT_ECDSA=ON`
+
+`arm-none-eabi-objcopy -O ihex build/bin/ot-cli-ftd build/bin/ot-cli-ftd.hex`
+
+`nrfjprog -f nrf52 -s 683339521 --chiperase --program  build/bin/ot-cli-ftd.hex --reset`
+
+Change to USB
+
+`screen /dev/ttyACM0 115200`
+
 ---
 
 ## Other
@@ -183,7 +238,7 @@ pi@raspberrypi:~ $ sudo dmesg -T -c
 ```
 
 - If shared folder isn't mounted on the VM (VMware player) :
-    - Execute command in VM on statup : ``sudo vmhgfs-fuse .host:/ /mnt/hgfs/ -o allow_other -o uid=1000``
+    - Execute command in VM on statup : `sudo vmhgfs-fuse .host:/ /mnt/hgfs/ -o allow_other -o uid=1000`
     - see : https://askubuntu.com/questions/74825/why-dont-shared-files-show-up-in-hgfs
 - VM Linux : Don't extract tar archive into shared directory
 - Download and install [GNU Arm Embedded Toolchain](https://askubuntu.com/questions/1243252/how-to-install-arm-none-eabi-gdb-on-ubuntu-20-04-lts-focal-fossa) on linux.
