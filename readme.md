@@ -1,5 +1,8 @@
 # Thread Introduction
 
+## Simple applications demos :
+- nrf52840 : simple udp client using Zephyr RTOS and OpenThread : https://github.com/Adecy/thread-nrf52840-udp-client
+
 ## Environnement : 
 
 - Windows 10
@@ -197,6 +200,15 @@ Guide : [Thread Border Router - Bidirectional IPv6 Connectivity and DNS-Based Se
 Change to USB
 
 `screen /dev/ttyACM0 115200`
+
+---
+
+# lwm2m
+
+- https://www.avsystem.com/blog/lightweight-m2m-lwm2m-overview/
+
+Try lwm2m with ZephyrRTOS and openthread :
+- see sample `zephyr\samples\net\lwm2m_client\src`
 
 ---
 
