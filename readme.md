@@ -1,7 +1,11 @@
 # Thread Introduction
 
 ## Simple applications demos :
-- nrf52840 : simple udp client using Zephyr RTOS and OpenThread : https://github.com/Adecy/thread-nrf52840-udp-client
+- nrf52840dk_nrf52840 : simple udp client using Zephyr RTOS and OpenThread : https://github.com/Adecy/thread-nrf52840-udp-client
+- nrf52840dk_nrf52840 : simple Matter (CHIP) demo using Zephyr RTOS and OpenThread : https://github.com/Adecy/nrf52840-matter-getting-started
+    - based on [light_switch](https://github.com/nrfconnect/sdk-nrf/tree/master/samples/matter/light_switch) and [light_bulb](https://github.com/nrfconnect/sdk-nrf/tree/master/samples/matter/light_bulb)
+- nrf52840dk_nrf52840 : OpenThread CLI based on Zephyr `cli52`
+- nrf9160dk_nrf52840 : OpenThread CLI based on Zephyr `cli91`
 
 ## Environnement : 
 
@@ -202,6 +206,11 @@ Change to USB
 `screen /dev/ttyACM0 115200`
 
 ---
+
+## Disable otbr services on linx :
+
+- `sudo systemctl disable otbr-web.service`
+- `sudo systemctl disable otbr-agent.service`
 
 # lwm2m
 

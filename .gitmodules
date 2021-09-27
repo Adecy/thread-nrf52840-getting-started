@@ -1,3 +1,6 @@
 [submodule "thread-nrf52840-udp-client"]
 	path = thread-nrf52840-udp-client
 	url = https://github.com/Adecy/thread-nrf52840-udp-client
+[submodule "nrf52840-matter-getting-started"]
+	path = nrf52840-matter-getting-started
+	url = https://github.com/Adecy/nrf52840-matter-getting-started
